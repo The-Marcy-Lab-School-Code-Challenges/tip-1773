@@ -1,7 +1,7 @@
 {
-  "name": "tip-first-unique-char",
+  "name": "tip-count-items-matching-rule",
   "version": "1.0.0",
-  "description": "First unique character problem with Jest tests",
+  "description": "Count Items Matching a Rule problem with Jest tests",
   "main": "index.js",
   "scripts": {
     "test": "jest",

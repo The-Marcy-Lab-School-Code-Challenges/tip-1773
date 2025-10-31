@@ -1,41 +1,46 @@
 /**
- * Test suite for Kids With the Greatest Number of Candies
+ * Test suite for Count Items Matching a Rule
  */
 
-const kidsWithCandies = require('./index');
+const countMatches = require('./index');
 
-describe('Kids With the Greatest Number of Candies', () => {
-  test('example 1', () => {
-    expect(kidsWithCandies([2, 3, 5, 1, 3], 3)).toEqual([
-      true, true, true, false, true,
-    ]);
+describe('Count Items Matching a Rule', () => {
+  test('example 1 from README', () => {
+    const items = [
+      ['phone', 'blue', 'pixel'],
+      ['computer', 'silver', 'lenovo'],
+      ['phone', 'gold', 'iphone'],
+    ];
+    expect(countMatches(items, 'color', 'silver')).toBe(1);
   });
 
-  test('example 2', () => {
-    expect(kidsWithCandies([4, 2, 1, 1, 2], 1)).toEqual([
-      true, false, false, false, false,
-    ]);
+  test('example 2 from README', () => {
+    const items = [
+      ['phone', 'blue', 'pixel'],
+      ['computer', 'silver', 'phone'],
+      ['phone', 'gold', 'iphone'],
+    ];
+    expect(countMatches(items, 'type', 'phone')).toBe(2);
   });
 
-  test('example 3', () => {
-    expect(kidsWithCandies([12, 1, 12], 10)).toEqual([
-      true, false, true,
-    ]);
+  test('no matches', () => {
+    const items = [
+      ['pen', 'black', 'bic'],
+      ['pencil', 'yellow', 'dixon'],
+    ];
+    expect(countMatches(items, 'color', 'blue')).toBe(0);
   });
 
-  test('single kid always greatest', () => {
-    expect(kidsWithCandies([7], 0)).toEqual([true]);
+  test('empty items returns 0', () => {
+    expect(countMatches([], 'name', 'x')).toBe(0);
   });
 
-  test('all equal candies with zero extra', () => {
-    expect(kidsWithCandies([5, 5, 5], 0)).toEqual([true, true, true]);
-  });
-
-  test('empty list yields empty result', () => {
-    expect(kidsWithCandies([], 5)).toEqual([]);
-  });
-
-  test('large extra makes everyone greatest', () => {
-    expect(kidsWithCandies([1, 2, 3], 100)).toEqual([true, true, true]);
+  test('matches by name', () => {
+    const items = [
+      ['toy', 'red', 'car'],
+      ['toy', 'red', 'ball'],
+      ['toy', 'blue', 'car'],
+    ];
+    expect(countMatches(items, 'name', 'car')).toBe(2);
   });
 });
